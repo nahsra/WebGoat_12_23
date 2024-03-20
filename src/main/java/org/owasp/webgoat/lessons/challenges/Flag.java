@@ -72,7 +72,7 @@ public class Flag extends AssignmentEndpoint {
     UserTracker userTracker = userTrackerRepository.findByUser(webSession.getUserName());
     String currentChallenge = webSession.getCurrentLesson().getName();
     int challengeNumber =
-        Integer.valueOf(
+        Integer.parseInt(
             currentChallenge.substring(currentChallenge.length() - 1, currentChallenge.length()));
     String expectedFlag = FLAGS.get(challengeNumber);
     final AttackResult attackResult;
