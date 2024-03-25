@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
 
-/** Handle contact management */
+/** Handle contact management with two new endpoints. */
 @RestController
 public final class ContactController {
 
