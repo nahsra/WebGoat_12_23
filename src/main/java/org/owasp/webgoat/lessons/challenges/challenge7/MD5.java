@@ -570,7 +570,6 @@ public class MD5 {
     a += ((b & c) | (~b & d));
     a += x;
     a += ac;
-    // return rotateLeft(a, s) + b;
     a = (a << s) | (a >>> (32 - s));
     return a + b;
   }
@@ -579,7 +578,6 @@ public class MD5 {
     a += ((b & d) | (c & ~d));
     a += x;
     a += ac;
-    // return rotateLeft(a, s) + b;
     a = (a << s) | (a >>> (32 - s));
     return a + b;
   }
@@ -588,7 +586,6 @@ public class MD5 {
     a += (b ^ c ^ d);
     a += x;
     a += ac;
-    // return rotateLeft(a, s) + b;
     a = (a << s) | (a >>> (32 - s));
     return a + b;
   }
@@ -597,7 +594,6 @@ public class MD5 {
     a += (c ^ (b | ~d));
     a += x;
     a += ac;
-    // return rotateLeft(a, s) + b;
     a = (a << s) | (a >>> (32 - s));
     return a + b;
   }
