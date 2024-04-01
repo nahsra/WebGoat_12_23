@@ -65,7 +65,7 @@ public class MD5 {
       finalState.copy(workingState);
       long bitCount = finalState.bitCount;
       // Compute the number of left over bits
-      int leftOver = (int) (((bitCount >>> 3)) & 0x3f);
+      int leftOver = (int) ((bitCount >>> 3) & 0x3f);
       // Compute the amount of padding to add based on number of left over bits.
       int padlen = (leftOver < 56) ? (56 - leftOver) : (120 - leftOver);
       // add the padding
@@ -631,10 +631,10 @@ public class MD5 {
     int i, j;
     for (i = j = 0; j < len; i++, j += 4) {
       decodeBuffer[i] =
-          ((buffer[j + offset] & 0xff))
-              | (((buffer[j + 1 + offset] & 0xff)) << 8)
-              | (((buffer[j + 2 + offset] & 0xff)) << 16)
-              | (((buffer[j + 3 + offset] & 0xff)) << 24);
+          (buffer[j + offset] & 0xff)
+              | ((buffer[j + 1 + offset] & 0xff) << 8)
+              | ((buffer[j + 2 + offset] & 0xff) << 16)
+              | ((buffer[j + 3 + offset] & 0xff) << 24);
     }
     return decodeBuffer;
   }
