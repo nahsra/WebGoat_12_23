@@ -43,9 +43,8 @@ import org.owasp.webgoat.container.users.LessonTracker;
 import org.owasp.webgoat.container.users.UserTracker;
 import org.owasp.webgoat.container.users.UserTrackerRepository;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * LessonMenuService class.
@@ -53,7 +52,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author rlawson
  * @version $Id: $Id
  */
-@Controller
+@RestController
 @AllArgsConstructor
 public class LessonMenuService {
 
@@ -73,8 +72,7 @@ public class LessonMenuService {
    *
    * @return a {@link java.util.List} object.
    */
-  @RequestMapping(path = URL_LESSONMENU_MVC, produces = "application/json")
-  public @ResponseBody List<LessonMenuItem> showLeftNav() {
+  @RequestMapping(path = URL_LESSONMENU_MVC, produces = "application/json")  public List<LessonMenuItem> showLeftNav() {
     List<LessonMenuItem> menu = new ArrayList<>();
     List<Category> categories = course.getCategories();
     UserTracker userTracker = userTrackerRepository.findByUser(webSession.getUserName());

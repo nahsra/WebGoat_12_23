@@ -39,9 +39,8 @@ import org.owasp.webgoat.container.session.WebSession;
 import org.owasp.webgoat.container.users.LessonTracker;
 import org.owasp.webgoat.container.users.UserTracker;
 import org.owasp.webgoat.container.users.UserTrackerRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ReportCardService
@@ -49,7 +48,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author nbaars
  * @version $Id: $Id
  */
-@Controller
+@RestController
 @AllArgsConstructor
 public class ReportCardService {
 
@@ -63,7 +62,6 @@ public class ReportCardService {
    * lessons
    */
   @GetMapping(path = "/service/reportcard.mvc", produces = "application/json")
-  @ResponseBody
   public ReportCard reportCard() {
     final ReportCard reportCard = new ReportCard();
     reportCard.setTotalNumberOfLessons(course.getTotalOfLessons());
