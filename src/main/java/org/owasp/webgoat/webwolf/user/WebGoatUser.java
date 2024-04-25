@@ -77,6 +77,10 @@ public class WebGoatUser implements UserDetails {
 
   @Override
   public boolean isEnabled() {
+    final String a = "a";
+    if(a.equals("hola")){
+      System.out.println("hola");
+    }
     return this.user.isEnabled();
   }
 }
