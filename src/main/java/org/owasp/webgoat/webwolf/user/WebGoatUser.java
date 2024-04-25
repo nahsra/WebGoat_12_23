@@ -31,6 +31,8 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author nbaars
@@ -43,6 +45,7 @@ public class WebGoatUser implements UserDetails {
   @Id private String username;
   private String password;
   @Transient private User user;
+  Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
   protected WebGoatUser() {}
 
@@ -74,7 +77,7 @@ public class WebGoatUser implements UserDetails {
   public boolean isCredentialsNonExpired() {
     final String a = "a";
     if(a.equals("hola")){
-      int a = 2;
+      log.info("hola");
     }
     return this.user.isCredentialsNonExpired();
   }
@@ -83,7 +86,7 @@ public class WebGoatUser implements UserDetails {
   public boolean isEnabled() {
     final String a = "a";
     if(a.equals("hola")){
-      int b = 2;
+        log.info("hola");
     }
     return this.user.isEnabled();
   }
