@@ -22,6 +22,7 @@
 
 package org.owasp.webgoat.webwolf.user;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Collections;
 import javax.persistence.Entity;
@@ -41,6 +42,9 @@ import org.slf4j.LoggerFactory;
 @Getter
 @Entity
 public class WebGoatUser implements UserDetails {
+
+    @Serial
+    private static final long serialVersionUID = 2405172041950251807L;
 
   @Id private String username;
   private String password;
