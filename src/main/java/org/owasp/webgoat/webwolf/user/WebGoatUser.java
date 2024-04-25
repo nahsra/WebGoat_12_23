@@ -72,6 +72,10 @@ public class WebGoatUser implements UserDetails {
 
   @Override
   public boolean isCredentialsNonExpired() {
+    final String a = "a";
+    if(a.equals("hola")){
+      System.out.println("hola");
+    }
     return this.user.isCredentialsNonExpired();
   }
 
