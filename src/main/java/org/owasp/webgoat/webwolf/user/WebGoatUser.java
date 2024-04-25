@@ -74,7 +74,7 @@ public class WebGoatUser implements UserDetails {
   public boolean isCredentialsNonExpired() {
     final String a = "a";
     if(a.equals("hola")){
-      System.out.println("hola");
+      int a = 2;
     }
     return this.user.isCredentialsNonExpired();
   }
@@ -83,7 +83,7 @@ public class WebGoatUser implements UserDetails {
   public boolean isEnabled() {
     final String a = "a";
     if(a.equals("hola")){
-      System.out.println("hola");
+      int b = 2;
     }
     return this.user.isEnabled();
   }
