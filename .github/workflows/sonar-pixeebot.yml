@@ -14,4 +14,4 @@ jobs:
     steps:
       - uses: pixee/upload-tool-results-action@bad0f4d02ef4a2b951ae310598815a26d71aec5d
         with:
-          tool: defect-dojo
+          tool: defectdojo
