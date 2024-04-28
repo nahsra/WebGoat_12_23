@@ -15,3 +15,4 @@ jobs:
       - uses: pixee/upload-tool-results-action@bad0f4d02ef4a2b951ae310598815a26d71aec5d
         with:
           tool: defectdojo
+          defectdojo-token: ${{ secrets.DEFECTDOJO_TOKEN }}
