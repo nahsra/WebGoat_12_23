@@ -12,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
-      - uses: pixee/upload-tool-results-action@c78308fc00a9f8a863e1250c58182ae0fd33196d
+      - uses: pixee/upload-tool-results-action@bad0f4d02ef4a2b951ae310598815a26d71aec5d
         with:
           tool: defect-dojo
