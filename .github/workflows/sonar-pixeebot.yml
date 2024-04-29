@@ -10,10 +10,11 @@ jobs:
   share:
     name: Upload Sonar Results to Pixeebot
     runs-on: ubuntu-latest
-    if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
+    # if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
-      - uses: pixee/upload-tool-results-action@85a1e6c40c6441f267217d1a82e80ac79eb1425d
+      - uses: pixee/upload-tool-results-action@71a73d2fb01d4e78e8180abce80fc24cefc24ccb
         with:
           tool: defectdojo
           defectdojo-token: ${{ secrets.DEFECTDOJO_TOKEN }}
-          defectdojo-product-name: pygoat_demo
+          defectdojo-api-url: https://pixee-test.cloud.defectdojo.com/api
+          # defectdojo-product-name: pygoat_demo
