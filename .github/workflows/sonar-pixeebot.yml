@@ -1,4 +1,4 @@
-name: Fix DefectDojo Findings with Pixeebot
+name: Fix Sonar Issues with Pixeebot
 on:
   check_run:
     types: [completed]
@@ -8,13 +8,11 @@ permissions:
 
 jobs:
   share:
-    name: Upload DefectDojo Findings to Pixeebot
+    name: Upload Sonar Results to Pixeebot
     runs-on: ubuntu-latest
-    # if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
+    if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
-      - uses: pixee/upload-tool-results-action@71a73d2fb01d4e78e8180abce80fc24cefc24ccb
+      - uses: pixee/upload-tool-results-action@819a0fab065cd68b1cad9789c6417c9dca6c815b
         with:
-          tool: defectdojo
-          defectdojo-token: ${{ secrets.DEFECTDOJO_TOKEN }}
-          defectdojo-api-url: https://pixee-test.cloud.defectdojo.com/api
-          # defectdojo-product-name: pygoat_demo
+          tool: sonar
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
