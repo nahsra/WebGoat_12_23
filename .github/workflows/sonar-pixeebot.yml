@@ -8,11 +8,12 @@ permissions:
 
 jobs:
   share:
-    name: Upload Sonar Results to Pixeebot
+    name: EL HOTSPOT
     runs-on: ubuntu-latest
     if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
-      - uses: pixee/upload-tool-results-action@819a0fab065cd68b1cad9789c6417c9dca6c815b
+      - uses: pixee/upload-tool-results-action@d158a2c3a7da53a2dc4161e2c66692d94a3346b6
         with:
           tool: sonar
           sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-component-key: pixee_codemodder-python
