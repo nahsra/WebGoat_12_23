@@ -1,4 +1,4 @@
-name: Fix Sonar Issues with Pixeebot
+name: THE HOLBOX
 on:
   check_run:
     types: [completed]
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
-      - uses: pixee/upload-tool-results-action@d158a2c3a7da53a2dc4161e2c66692d94a3346b6
+      - uses: pixee/upload-tool-results-action@c61485925c802f31373f5c28e9fd5f6ef3cc6924
         with:
           tool: sonar
           sonar-token: ${{ secrets.SONAR_TOKEN }}
