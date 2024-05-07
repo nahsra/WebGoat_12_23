@@ -15,5 +15,4 @@ jobs:
       - uses: pixee/upload-tool-results-action@c61485925c802f31373f5c28e9fd5f6ef3cc6924
         with:
           tool: sonar
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
           sonar-component-key: pixee_codemodder-python
