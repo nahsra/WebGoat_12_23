@@ -1,4 +1,4 @@
-name: THE HOLBOX
+name: HOTSPOTS ISSUES
 on:
   check_run:
     types: [completed]
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
-      - uses: pixee/upload-tool-results-action@563134fd1bc8a8c9260eed2f5ea8ed91d0be9e51
+      - uses: pixee/upload-tool-results-action@b1f48a7bcbd1077c5bbcfc17540fd79a3e82f10a
         with:
           tool: sonar
           sonar-token: ${{ secrets.SONAR_TOKEN }}
