@@ -8,8 +8,13 @@ import javax.crypto.Cipher;
 public class EncryptionExample {
 
     public byte[] encrypt(String text) throws Exception {
+        int a, b, c;
+
+        a = 2;
+        b = 1;
+        c = 3;
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        keyPairGenerator.initialize(1024); // Weak key length
+        keyPairGenerator.initialize(1024+a+b+c); // Weak key length
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         Key publicKey = keyPair.getPublic();
 
