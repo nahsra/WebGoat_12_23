@@ -17,7 +17,7 @@ jobs:
         distribution: temurin
 
     - name: Download Contrast Agent
-      run: wget -O contrast.jar https://download.java.contrastsecurity.com/latest
+      run: wget -q -O contrast.jar https://download.java.contrastsecurity.com/latest
 
     - name: Set up Contrast environment variables
       run: |
@@ -28,7 +28,7 @@ jobs:
 
     - name: Run WebGoat
       run: |
-        wget -O webgoat.jar https://github.com/WebGoat/WebGoat/releases/download/v2023.8/webgoat-2023.8.jar
+        wget -q -O webgoat.jar https://github.com/WebGoat/WebGoat/releases/download/v2023.8/webgoat-2023.8.jar
         nohup java -javaagent:contrast.jar -Dcontrast.application_name=WebGoat -Dcontrast.application.session_metadata="branchName=${{ github.ref }},commitHash=${{ github.sha }},repository=${{ github.repository }}" -jar webgoat.jar &
 
     - name: Exercise WebGoat
