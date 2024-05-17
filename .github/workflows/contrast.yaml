@@ -14,6 +14,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
+        distribution: temurin
 
     - name: Download Contrast Agent
       run: wget -O contrast.jar https://download.java.contrastsecurity.com/latest
