@@ -23,7 +23,7 @@ jobs:
       run: |
         echo "CONTRAST__API__URL=${{ secrets.CONTRAST_API_URL }}" >> $GITHUB_ENV
         echo "CONTRAST__API__API_KEY==${{ secrets.CONTRAST_API_KEY }}" >> $GITHUB_ENV
-        echo "CONTRAST__API__API_SECRET==${{ secrets.CONTRAST_API_SECRET }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__SERVICE_KEY==${{ secrets.CONTRAST_API_SERVICE_KEY }}" >> $GITHUB_ENV
         echo "CONTRAST__API__USER_NAME==${{ secrets.CONTRAST_API_USERNAME }}" >> $GITHUB_ENV
 
     - name: Run WebGoat
