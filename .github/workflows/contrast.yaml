@@ -1,0 +1,36 @@
+name: Run WebGoat with Contrast
+
+on: [push]
+
+jobs:
+  run-webgoat:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    - name: Download Contrast Agent
+      run: wget -O contrast.jar https://download.java.contrastsecurity.com/latest
+
+    - name: Set up Contrast environment variables
+      run: |
+        echo "CONTRAST__API__URL=${{ secrets.CONTRAST_API_URL }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__API_KEY==${{ secrets.CONTRAST_API_KEY }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__API_SECRET==${{ secrets.CONTRAST_API_SECRET }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__USER_NAME==${{ secrets.CONTRAST_API_USERNAME }}" >> $GITHUB_ENV
+
+    - name: Run WebGoat
+      run: |
+        wget -O webgoat.jar https://github.com/WebGoat/WebGoat/releases/download/v2023.8/webgoat-2023.8.jar
+        nohup java -javaagent:contrast.jar -Dcontrast.application_name=WebGoat -Dcontrast.application.session_metadata="branchName=${{ github.ref }},commitHash=${{ github.sha }},repository=${{ github.repository }}" -jar webgoat.jar &
+
+    - name: Exercise WebGoat
+      run: |
+        sleep 30 # Wait for WebGoat to start
+        curl http://localhost:8080/WebGoat/login.mvc
