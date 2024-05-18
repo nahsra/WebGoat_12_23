@@ -52,19 +52,11 @@ jobs:
 
     - name: Wait for findings to be reported
       run: sleep 15
-      
+
     - name: Pull Contrast findings
       run: |
-        curl -X POST \
-          -o findings.xml
-          -H "Content-Type:application/json" \
-          -d '{"filterText": "","quickFilter": "OPEN","excludedTraces": [],"applicationIds": ["${{ secrets.CONTRAST__API__APP_ID }}"],"metadataFilters": []}' \
-          $CONTRAST__API__URL/api/ng/${{ secrets.CONTRAST__API__ORG_ID }}/orgtraces/bulk/export/xml?async=false
+        curl --X POST -H "Content-Type:application/json" -d '{"filterText": "","quickFilter": "OPEN","excludedTraces": [],"applicationIds": ["${{ secrets.CONTRAST__API__APP_ID }}"],"metadataFilters": []}' $CONTRAST__API__URL/api/ng/${{ secrets.CONTRAST__API__ORG_ID }}/orgtraces/bulk/export/xml?async=false
           
-    - name: Upload Contrast Results
-      uses: pixee/upload-tool-results-action@v1.0.4
-      with:
-        tool: contrast
-        file: findings.xml
-        
-
+    - name: Upload Contrast Results to Pixee
+      run: |
+        curl -X POST -H "Content-Type: application/xml" --data-binary "@/path/to/your/file.xml" https://api.pixee.ai/$${{github.repoitory}}/${{github.sha}}/contrast
