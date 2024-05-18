@@ -31,7 +31,19 @@ jobs:
         wget -q -O webgoat.jar https://github.com/WebGoat/WebGoat/releases/download/v2023.8/webgoat-2023.8.jar
         nohup java -javaagent:contrast.jar -Dcontrast.application_name=WebGoat -Dcontrast.application.session_metadata="branchName=${{ github.ref }},commitHash=${{ github.sha }},repository=${{ github.repository }}" -jar webgoat.jar &
 
-    - name: Exercise WebGoat
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
       run: |
-        sleep 30 # Wait for WebGoat to start
-        curl http://localhost:8080/WebGoat/login.mvc
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Wait for startup
+      run: sleep 15 # Wait for WebGoat to start
+    
+    - name: Run script
+      run: python exercise_sqli_5a.py
