@@ -32,10 +32,10 @@ jobs:
         nohup java -javaagent:contrast.jar -Dcontrast.application_name=WebGoat -Dcontrast.application.session_metadata="branchName=${{ github.ref }},commitHash=${{ github.sha }},repository=${{ github.repository }}" -jar webgoat.jar &
 
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.10
+        python-version: 3.11.9
 
     - name: Install dependencies
       run: |
