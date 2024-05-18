@@ -59,4 +59,4 @@ jobs:
           
     - name: Upload Contrast Results to Pixee
       run: |
-        curl -X POST -H "Content-Type: application/xml" --data-binary "@findings.xml" https://api.pixee.ai/${{github.repository}}/${{github.sha}}/contrast
+        curl -X PUT -H "Content-Type: application/xml" --data-binary "@findings.xml" https://api.pixee.ai/analysis-input/${{github.repository}}/${{github.sha}}/contrast
