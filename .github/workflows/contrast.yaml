@@ -25,6 +25,8 @@ jobs:
         echo "CONTRAST__API__API_KEY==${{ secrets.CONTRAST_API_KEY }}" >> $GITHUB_ENV
         echo "CONTRAST__API__SERVICE_KEY==${{ secrets.CONTRAST_API_SERVICE_KEY }}" >> $GITHUB_ENV
         echo "CONTRAST__API__USER_NAME==${{ secrets.CONTRAST_API_USERNAME }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__ORG_ID==${{ secrets.CONTRAST_API_ORG_ID }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__APP_ID==${{ secrets.CONTRAST_API_APP_ID }}" >> $GITHUB_ENV
 
     - name: Run WebGoat
       run: |
@@ -47,3 +49,21 @@ jobs:
     
     - name: Run script
       run: python exercise_sqli_5a.py
+
+    - name: Wait for findings to be reported
+      run: sleep 15
+      
+    - name: Pull Contrast findings
+      run: |
+        curl -X POST \
+          -H "Content-Type:application/json" \
+          -d '{"filterText": "","quickFilter": "OPEN","excludedTraces": [],"applicationIds": ["${{ secrets.CONTRAST__API__APP_ID }}"],"metadataFilters": []}' \
+          $CONTRAST__API__URL/api/ng/${{ secrets.CONTRAST__API__ORG_ID }}/orgtraces/bulk/export/xml?async=false
+          
+    - name: Upload Contrast Results
+      uses: pixee/upload-tool-results-action@v1.0.4
+      with:
+        tool: contrast
+        file: findings.xml
+        
+
