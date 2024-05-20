@@ -55,7 +55,9 @@ jobs:
 
     - name: Pull Contrast findings
       run: |
-        curl -o findings.xml -X POST -H "Authorization: ${{secrets.CONTRAST_API_TOKEN}}" -H "API-Key: ${{secrets.CONTRAST_API_KEY}}" -H "Content-Type: application/json" -d '{"filterText": "","quickFilter": "OPEN","excludedTraces": [],"applicationIds": ["${{ secrets.CONTRAST_API_APP_ID }}"],"metadataFilters": []}' ${{secrets.CONTRAST_API_URL}}/api/ng/${{ secrets.CONTRAST_API_ORG_ID }}/orgtraces/bulk/export/xml?async=false
+        curl -o findings.zip -H "Accept: application/x-zip-compressed" -H "Authorization: ${{secrets.CONTRAST_API_TOKEN}}" -H "API-Key: ${{secrets.CONTRAST_API_KEY}}" -H "Content-Type: application/json" -X POST ${{secrets.CONTRAST_API_URL}}/api/ng/${{ secrets.CONTRAST_API_ORG_ID }}/traces//${{ secrets.CONTRAST_API_APP_ID }}/export/xml/all
+        unzip findings.zip
+        mv vulnerabilities*.xml findings.xml
 
     - name: Show Contrast findings
       run: |
