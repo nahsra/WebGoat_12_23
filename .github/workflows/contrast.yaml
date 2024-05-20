@@ -1,6 +1,7 @@
 name: Run WebGoat with Contrast
 
-on: [push]
+on:
+  workflow_dispatch:
 
 permissions:
   contents: read
