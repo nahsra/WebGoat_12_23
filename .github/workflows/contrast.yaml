@@ -63,9 +63,8 @@ jobs:
         unzip findings.zip
         mv vulnerabilities*.xml findings.xml
 
-    - name: Upload Contrast Results to Pixee
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        GH_PIXEE_TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=https://app.pixee.ai" | jq -j '.value')
-        curl -X PUT -H "Authorization: Bearer $GH_PIXEE_TOKEN" -H "Content-Type: application/xml" --data-binary "@findings.xml" https://api.pixee.ai/analysis-input/${{github.repository}}/${{github.sha}}/contrast
+    - name: Fix Contrast Findings with Pixeebot
+      uses: pixee/upload-tool-results-action@6dabe7070515ac6f5a0a7d8ca8726f6da7b6e2fa 
+      with:
+        tool: contrast
+        file: findings.xml
