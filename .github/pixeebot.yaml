@@ -1,2 +1,6 @@
 ai:
   allow_llm_access: true
+
+codemods:
+  prepend:
+    - contrast:java/sql-injection
