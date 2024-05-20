@@ -65,7 +65,7 @@ jobs:
         mv vulnerabilities*.xml findings.xml
 
     - name: Fix Contrast Findings with Pixeebot
-      uses: pixee/upload-tool-results-action@6dabe7070515ac6f5a0a7d8ca8726f6da7b6e2fa 
+      uses: pixee/upload-tool-results-action@v1.1.0
       with:
         tool: contrast
         file: findings.xml
