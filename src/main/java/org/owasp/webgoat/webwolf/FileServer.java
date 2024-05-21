@@ -120,4 +120,11 @@ public class FileServer {
     modelAndView.addObject("webwolf_url", "http://" + server + ":" + port);
     return modelAndView;
   }
+
+      public void print2() {
+        String x = "test";
+        if (x.equals("test")) {
+            System.out.println("Hello, World!");
+        }
+    }
 }
