@@ -1,4 +1,4 @@
-name: HOTSPOTS ISSUES
+name: MULTIPLE FILES
 on:
   check_run:
     types: [completed]
@@ -8,11 +8,12 @@ permissions:
 
 jobs:
   share:
-    name: EL HOTSPOT
+    name: Testing URL
     runs-on: ubuntu-latest
     if: ${{ github.event.check_run.name == 'SonarCloud Code Analysis' }}
     steps:
-      - uses: pixee/upload-tool-results-action@2e0d75df6fe9c22ce8982e34f56b60f8996af877
+      - uses: pixee/upload-tool-results-action@v1.1.1
         with:
+          pixee-api-url: https://www.carlos.com
           tool: sonar
           sonar-token: ${{ secrets.SONAR_TOKEN }}
