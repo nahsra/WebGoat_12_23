@@ -14,6 +14,6 @@ jobs:
     steps:
       - uses: pixee/upload-tool-results-action@3e0db9311500fa3268a60634dddfc4bafa2826a8
         with:
-          pixee-api-url: https://www.carlos.com
+          pixee-api-url: https://f4wf3v81x2.execute-api.us-east-1.amazonaws.com/prod
           tool: sonar
           sonar-token: ${{ secrets.SONAR_TOKEN }}
