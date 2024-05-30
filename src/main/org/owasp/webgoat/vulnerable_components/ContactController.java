@@ -10,9 +10,11 @@ import java.sql.*;
 public final class ContactController {
 
     private final LessonDataSource dataSource;
-
-    public ContactController(LessonDataSource dataSource) {
+    private Optional<Session> session;
+    
+    public ContactController(LessonDataSource dataSource, Optional<Session> session) {
         this.dataSource = dataSource;
+        this.session = session;
     }
 
     @RequestMapping(path = "/search", method = {RequestMethod.GET, RequestMethod.POST})
@@ -25,7 +27,11 @@ public final class ContactController {
     @RequestMapping("/search")
     public @ResponseBody
     void logout() throws SQLException {
-        currentSession().logout();
+
+        if (currentSession().isPresent()) {
+            Session session = currentSession().get();
+            session.logout();
+        }
     }
 
 }
