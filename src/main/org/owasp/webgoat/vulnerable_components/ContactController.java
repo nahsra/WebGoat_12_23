@@ -4,6 +4,7 @@ import org.owasp.webgoat.LessonDataSource;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.sql.*;
+import java.security.MessageDigest;
 
 /** Handle contact management with two new endpoints. */
 @RestController
@@ -19,6 +20,8 @@ public abstract class ContactController {
     public @ResponseBody 
     String search(String q) throws SQLException {
       // get the phone number from the database
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      doThing(md);
       return contactDao.search();
     }
 
