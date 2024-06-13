@@ -3,8 +3,8 @@ package org.owasp.webgoat.vulnerable_components;
 import org.owasp.webgoat.LessonDataSource;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
-import java.security.MessageDigest;
 import java.sql.*;
+import java.security.MessageDigest;
 
 /** Handle contact management with two new endpoints. */
 @RestController
