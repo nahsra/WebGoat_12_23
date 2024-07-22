@@ -19,10 +19,19 @@ public abstract class ContactController {
     @RequestMapping(path = "/search", method = {RequestMethod.GET, RequestMethod.POST})
     public @ResponseBody 
     String search(String q) throws SQLException {
-      // get the phone number from the database
+      return contactDao.search(q);
+    }
+
+    @RequestMapping(path = "/updatePw", method = {RequestMethod.POST})
+    public @ResponseBody 
+    String updatePassword(String newPassword1, String newPassword2) throws SQLException {
+      if(!newPassword1.equals(newPassword2)) { 
+          return "nomatch"; 
+      }
       MessageDigest md = MessageDigest.getInstance("MD5");
-      doThing(md);
-      return contactDao.search();
+      byte[] b = md.digest(newPassword.getBytes("UTF-8"));
+      String hexMd5 = toHexString(b);
+      return userDao.updatePassword(getContext(), hexMd5);
     }
 
     @RequestMapping("/search")
