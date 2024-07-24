@@ -140,6 +140,7 @@ public class SqlInjectionLesson10b extends AssignmentEndpoint {
       this.contents = contents;
     }
 
+    @Override
     public CharSequence getCharContent(boolean ignoreEncodingErrors) throws IOException {
       return contents;
     }

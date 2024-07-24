@@ -41,6 +41,7 @@ public class ProfileUploadFix extends ProfileUploadBase {
 
   @GetMapping("/PathTraversal/profile-picture-fix")
   @ResponseBody
+  @Override
   public ResponseEntity<?> getProfilePicture() {
     return super.getProfilePicture();
   }
