@@ -11,6 +11,9 @@ import java.util.Base64;
 
 public class SerializationHelper {
 
+private SerializationHelper() {
+}
+
   private static final char[] hexArray = "0123456789ABCDEF".toCharArray();
 
   public static Object fromString(String s) throws IOException, ClassNotFoundException {

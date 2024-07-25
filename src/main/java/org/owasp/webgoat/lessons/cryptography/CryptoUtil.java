@@ -22,6 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CryptoUtil {
 
+private CryptoUtil() {
+}
+
   private static final BigInteger[] FERMAT_PRIMES = {
     BigInteger.valueOf(3),
     BigInteger.valueOf(5),
