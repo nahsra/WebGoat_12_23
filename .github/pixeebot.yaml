@@ -4,3 +4,5 @@ ai:
 codemods:
   prepend:
     - contrast:java/sql-injection
+    - contrast:java/xxe
+    - contrast:java/untrusted-deserialization
