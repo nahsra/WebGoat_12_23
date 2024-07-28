@@ -38,7 +38,6 @@ jobs:
         wget -q -O webgoat.jar https://github.com/WebGoat/WebGoat/releases/download/v2023.8/webgoat-2023.8.jar
         nohup java -Dcontrast.assess.max_context_source_events=50000 -javaagent:contrast.jar -Dcontrast.application_name=WebGoat -Dcontrast.application.session_metadata="branchName=${{ github.ref }},commitHash=${{ github.sha }},repository=${{ github.repository }}" -jar webgoat.jar &
 
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -50,13 +49,13 @@ jobs:
         pip install requests
 
     - name: Wait for startup
-      run: sleep 15 # Wait for WebGoat to start
+      run: sleep 30 # Wait for WebGoat to start
     
     - name: Run script
       run: python exercise_sqli_5a.py
 
     - name: Wait for findings to be reported
-      run: sleep 15
+      run: sleep 30
 
     - name: Pull Contrast findings
       run: |
