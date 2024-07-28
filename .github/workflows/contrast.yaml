@@ -27,11 +27,11 @@ jobs:
     - name: Set up Contrast environment variables
       run: |
         echo "CONTRAST__API__URL=${{ secrets.CONTRAST_API_URL }}" >> $GITHUB_ENV
-        echo "CONTRAST__API__API_KEY==${{ secrets.CONTRAST_API_KEY }}" >> $GITHUB_ENV
-        echo "CONTRAST__API__SERVICE_KEY==${{ secrets.CONTRAST_API_SERVICE_KEY }}" >> $GITHUB_ENV
-        echo "CONTRAST__API__USER_NAME==${{ secrets.CONTRAST_API_USERNAME }}" >> $GITHUB_ENV
-        echo "CONTRAST__API__ORG_ID==${{ secrets.CONTRAST_API_ORG_ID }}" >> $GITHUB_ENV
-        echo "CONTRAST__API__APP_ID==${{ secrets.CONTRAST_API_APP_ID }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__API_KEY=${{ secrets.CONTRAST_API_KEY }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__SERVICE_KEY=${{ secrets.CONTRAST_API_SERVICE_KEY }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__USER_NAME=${{ secrets.CONTRAST_API_USERNAME }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__ORG_ID=${{ secrets.CONTRAST_API_ORG_ID }}" >> $GITHUB_ENV
+        echo "CONTRAST__API__APP_ID=${{ secrets.CONTRAST_API_APP_ID }}" >> $GITHUB_ENV
 
     - name: Run WebGoat
       run: |
