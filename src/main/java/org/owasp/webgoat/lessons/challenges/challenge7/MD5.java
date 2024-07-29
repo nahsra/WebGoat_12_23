@@ -617,7 +617,8 @@ public class MD5 {
 
   private static byte[] encode(int input[], int len) {
     byte[] out = new byte[len];
-    int i, j;
+    int i;
+    int j;
     for (i = j = 0; j < len; i++, j += 4) {
       out[j] = (byte) (input[i] & 0xff);
       out[j + 1] = (byte) ((input[i] >>> 8) & 0xff);
@@ -628,7 +629,8 @@ public class MD5 {
   }
 
   private int[] decode(byte buffer[], int len, int offset) {
-    int i, j;
+    int i;
+    int j;
     for (i = j = 0; j < len; i++, j += 4) {
       decodeBuffer[i] =
           ((buffer[j + offset] & 0xff))
