@@ -5,4 +5,4 @@ codemods:
   prepend:
     - contrast:java/sql-injection
     - contrast:java/xxe
-    - contrast:java/ava-deserialization
+    - contrast:java/java-deserialization
