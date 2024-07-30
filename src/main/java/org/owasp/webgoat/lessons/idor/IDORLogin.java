@@ -42,13 +42,13 @@ public class IDORLogin extends AssignmentEndpoint {
   public void initIDORInfo() {
 
     idorUserInfo.put("tom", new HashMap<String, String>());
-    idorUserInfo.get("tom").put("password", "cat");
+    idorUserInfo.get("tom").put(PASSWORD, "cat");
     idorUserInfo.get("tom").put("id", "2342384");
     idorUserInfo.get("tom").put("color", "yellow");
     idorUserInfo.get("tom").put("size", "small");
 
     idorUserInfo.put("bill", new HashMap<String, String>());
-    idorUserInfo.get("bill").put("password", "buffalo");
+    idorUserInfo.get("bill").put(PASSWORD, "buffalo");
     idorUserInfo.get("bill").put("id", "2342388");
     idorUserInfo.get("bill").put("color", "brown");
     idorUserInfo.get("bill").put("size", "large");
@@ -61,7 +61,7 @@ public class IDORLogin extends AssignmentEndpoint {
     UserSessionData userSessionData = getUserSessionData();
 
     if (idorUserInfo.containsKey(username)) {
-      if ("tom".equals(username) && idorUserInfo.get("tom").get("password").equals(password)) {
+      if ("tom".equals(username) && idorUserInfo.get("tom").get(PASSWORD).equals(password)) {
         userSessionData.setValue("idor-authenticated-as", username);
         userSessionData.setValue(
             "idor-authenticated-user-id", idorUserInfo.get(username).get("id"));
@@ -73,4 +73,6 @@ public class IDORLogin extends AssignmentEndpoint {
       return failed(this).feedback("idor.login.failure").build();
     }
   }
+  
+  private static final String PASSWORD = "password";
 }

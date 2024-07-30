@@ -70,7 +70,7 @@ public class CrossSiteScriptingLesson5a extends AssignmentEndpoint {
             + QTY3.intValue() * 1599.99
             + QTY4.intValue() * 299.99;
 
-    userSessionData.setValue("xss-reflected1-complete", "false");
+    userSessionData.setValue(XSS_REFLECTED1_COMPLETE, FALSE);
     StringBuilder cart = new StringBuilder();
     cart.append("Thank you for shopping at WebGoat. <br />Your support is appreciated<hr />");
     cart.append("<p>We have charged credit card:" + field1 + "<br />");
@@ -78,8 +78,8 @@ public class CrossSiteScriptingLesson5a extends AssignmentEndpoint {
     cart.append("                               $" + totalSale);
 
     // init state
-    if (userSessionData.getValue("xss-reflected1-complete") == null) {
-      userSessionData.setValue("xss-reflected1-complete", "false");
+    if (userSessionData.getValue(XSS_REFLECTED1_COMPLETE) == null) {
+      userSessionData.setValue(XSS_REFLECTED1_COMPLETE, FALSE);
     }
 
     if (XSS_PATTERN.test(field1)) {
@@ -96,8 +96,12 @@ public class CrossSiteScriptingLesson5a extends AssignmentEndpoint {
             .build();
       }
     } else {
-      userSessionData.setValue("xss-reflected1-complete", "false");
+      userSessionData.setValue(XSS_REFLECTED1_COMPLETE, FALSE);
       return failed(this).feedback("xss-reflected-5a-failure").output(cart.toString()).build();
     }
   }
+  
+  private static final String XSS_REFLECTED1_COMPLETE = "xss-reflected1-complete";
+  
+  private static final String FALSE = "false";
 }

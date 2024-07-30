@@ -81,7 +81,7 @@ public class SqlInjectionLesson5a extends AssignmentEndpoint {
                 .feedbackArgs(output.toString())
                 .build();
           } else {
-            return failed(this).output(output.toString() + "<br> Your query was: " + query).build();
+            return failed(this).output(output.toString() + BR_YOUR_QUERY_WAS + query).build();
           }
         } else {
           return failed(this)
@@ -90,12 +90,12 @@ public class SqlInjectionLesson5a extends AssignmentEndpoint {
               .build();
         }
       } catch (SQLException sqle) {
-        return failed(this).output(sqle.getMessage() + "<br> Your query was: " + query).build();
+        return failed(this).output(sqle.getMessage() + BR_YOUR_QUERY_WAS + query).build();
       }
     } catch (Exception e) {
       return failed(this)
           .output(
-              this.getClass().getName() + " : " + e.getMessage() + "<br> Your query was: " + query)
+              this.getClass().getName() + " : " + e.getMessage() + BR_YOUR_QUERY_WAS + query)
           .build();
     }
   }
@@ -133,4 +133,6 @@ public class SqlInjectionLesson5a extends AssignmentEndpoint {
     t.append("</p>");
     return (t.toString());
   }
+  
+  private static final String BR_YOUR_QUERY_WAS = "<br> Your query was: ";
 }

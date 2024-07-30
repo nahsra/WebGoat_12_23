@@ -111,13 +111,13 @@ public class AsciiDoctorTemplateResolver extends FileTemplateResolver {
     String computedResourceName =
         computeResourceName(templateName, language.getLocale().getLanguage());
     if (resourceLoader
-        .getResource("classpath:/" + computedResourceName)
+        .getResource(CLASSPATH + computedResourceName)
         .isReadable() /*isFile()*/) {
       log.debug("localized file exists");
-      return resourceLoader.getResource("classpath:/" + computedResourceName).getInputStream();
+      return resourceLoader.getResource(CLASSPATH + computedResourceName).getInputStream();
     } else {
       log.debug("using english template");
-      return resourceLoader.getResource("classpath:/" + templateName).getInputStream();
+      return resourceLoader.getResource(CLASSPATH + templateName).getInputStream();
     }
   }
 
@@ -131,7 +131,7 @@ public class AsciiDoctorTemplateResolver extends FileTemplateResolver {
     log.debug("computed local file name: {}", computedResourceName);
     log.debug(
         "file exists: {}",
-        resourceLoader.getResource("classpath:/" + computedResourceName).isReadable());
+        resourceLoader.getResource(CLASSPATH + computedResourceName).isReadable());
     return computedResourceName;
   }
 
@@ -169,4 +169,6 @@ public class AsciiDoctorTemplateResolver extends FileTemplateResolver {
       }
     }
   }
+  
+  private static final String CLASSPATH = "classpath:/";
 }

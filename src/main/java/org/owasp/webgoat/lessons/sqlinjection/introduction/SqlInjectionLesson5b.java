@@ -103,7 +103,7 @@ public class SqlInjectionLesson5b extends AssignmentEndpoint {
             return failed(this)
                 .output(
                     output.toString()
-                        + "<br> Your query was: "
+                        + BR_YOUR_QUERY_WAS
                         + queryString.replace("?", login_count))
                 .build();
           }
@@ -118,7 +118,7 @@ public class SqlInjectionLesson5b extends AssignmentEndpoint {
 
         return failed(this)
             .output(
-                sqle.getMessage() + "<br> Your query was: " + queryString.replace("?", login_count))
+                sqle.getMessage() + BR_YOUR_QUERY_WAS + queryString.replace("?", login_count))
             .build();
       }
     } catch (Exception e) {
@@ -127,9 +127,11 @@ public class SqlInjectionLesson5b extends AssignmentEndpoint {
               this.getClass().getName()
                   + " : "
                   + e.getMessage()
-                  + "<br> Your query was: "
+                  + BR_YOUR_QUERY_WAS
                   + queryString.replace("?", login_count))
           .build();
     }
   }
+  
+  private static final String BR_YOUR_QUERY_WAS = "<br> Your query was: ";
 }

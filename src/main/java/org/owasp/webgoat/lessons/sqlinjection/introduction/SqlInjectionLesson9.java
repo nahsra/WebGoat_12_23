@@ -86,7 +86,7 @@ public class SqlInjectionLesson9 extends AssignmentEndpoint {
       } catch (SQLException e) {
         System.err.println(e.getMessage());
         return failed(this)
-            .output("<br><span class='feedback-negative'>" + e.getMessage() + "</span>")
+            .output(BR_SPAN_CLASS_FEEDBACK_NEGATIVE + e.getMessage() + SPAN)
             .build();
       }
 
@@ -95,7 +95,7 @@ public class SqlInjectionLesson9 extends AssignmentEndpoint {
     } catch (Exception e) {
       System.err.println(e.getMessage());
       return failed(this)
-          .output("<br><span class='feedback-negative'>" + e.getMessage() + "</span>")
+          .output(BR_SPAN_CLASS_FEEDBACK_NEGATIVE + e.getMessage() + SPAN)
           .build();
     }
   }
@@ -121,8 +121,12 @@ public class SqlInjectionLesson9 extends AssignmentEndpoint {
       }
     } catch (SQLException e) {
       return failed(this)
-          .output("<br><span class='feedback-negative'>" + e.getMessage() + "</span>")
+          .output(BR_SPAN_CLASS_FEEDBACK_NEGATIVE + e.getMessage() + SPAN)
           .build();
     }
   }
+  
+  private static final String BR_SPAN_CLASS_FEEDBACK_NEGATIVE = "<br><span class='feedback-negative'>";
+  
+  private static final String SPAN = "</span>";
 }

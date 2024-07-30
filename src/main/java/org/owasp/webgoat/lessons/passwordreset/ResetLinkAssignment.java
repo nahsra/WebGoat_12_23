@@ -100,7 +100,7 @@ public class ResetLinkAssignment extends AssignmentEndpoint {
       modelAndView.addObject("form", form);
       modelAndView.setViewName("password_reset"); // Display html page for changing password
     } else {
-      modelAndView.setViewName("password_link_not_found");
+      modelAndView.setViewName(PASSWORD_LINK_NOT_FOUND);
     }
     return modelAndView;
   }
@@ -108,7 +108,7 @@ public class ResetLinkAssignment extends AssignmentEndpoint {
   @GetMapping("/PasswordReset/reset/change-password")
   public ModelAndView illegalCall() {
     ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("password_link_not_found");
+    modelAndView.setViewName(PASSWORD_LINK_NOT_FOUND);
     return modelAndView;
   }
 
@@ -124,7 +124,7 @@ public class ResetLinkAssignment extends AssignmentEndpoint {
       return modelAndView;
     }
     if (!resetLinks.contains(form.getResetLink())) {
-      modelAndView.setViewName("password_link_not_found");
+      modelAndView.setViewName(PASSWORD_LINK_NOT_FOUND);
       return modelAndView;
     }
     if (checkIfLinkIsFromTom(form.getResetLink())) {
@@ -138,4 +138,6 @@ public class ResetLinkAssignment extends AssignmentEndpoint {
     String resetLink = userToTomResetLink.getOrDefault(getWebSession().getUserName(), "unknown");
     return resetLink.equals(resetLinkFromForm);
   }
+  
+  private static final String PASSWORD_LINK_NOT_FOUND = "password_link_not_found";
 }

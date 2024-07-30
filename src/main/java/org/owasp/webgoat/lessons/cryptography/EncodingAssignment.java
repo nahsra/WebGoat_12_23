@@ -45,13 +45,13 @@ public class EncodingAssignment extends AssignmentEndpoint {
   @ResponseBody
   public String getBasicAuth(HttpServletRequest request) {
 
-    String basicAuth = (String) request.getSession().getAttribute("basicAuth");
+    String basicAuth = (String) request.getSession().getAttribute(BASICAUTH);
     String username = request.getUserPrincipal().getName();
     if (basicAuth == null) {
       String password =
           HashingAssignment.SECRETS[new Random().nextInt(HashingAssignment.SECRETS.length)];
       basicAuth = getBasicAuth(username, password);
-      request.getSession().setAttribute("basicAuth", basicAuth);
+      request.getSession().setAttribute(BASICAUTH, basicAuth);
     }
     return "Authorization: Basic ".concat(basicAuth);
   }
@@ -62,7 +62,7 @@ public class EncodingAssignment extends AssignmentEndpoint {
       HttpServletRequest request,
       @RequestParam String answer_user,
       @RequestParam String answer_pwd) {
-    String basicAuth = (String) request.getSession().getAttribute("basicAuth");
+    String basicAuth = (String) request.getSession().getAttribute(BASICAUTH);
     if (basicAuth != null
         && answer_user != null
         && answer_pwd != null
@@ -72,4 +72,6 @@ public class EncodingAssignment extends AssignmentEndpoint {
       return failed(this).feedback("crypto-encoding.empty").build();
     }
   }
+  
+  private static final String BASICAUTH = "basicAuth";
 }

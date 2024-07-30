@@ -47,7 +47,7 @@ public class CryptoUtil {
         encodedString
             + new String(
                 Base64.getEncoder().encode(keyPair.getPrivate().getEncoded()),
-                Charset.forName("UTF-8"))
+                Charset.forName(UTF_8))
             + "\n";
     encodedString = encodedString + "-----END PRIVATE KEY-----\n";
     return encodedString;
@@ -62,10 +62,10 @@ public class CryptoUtil {
       // Initiate signature verification
       Signature instance = Signature.getInstance("SHA256withRSA");
       instance.initSign(privateKey);
-      instance.update(message.getBytes("UTF-8"));
+      instance.update(message.getBytes(UTF_8));
 
       // actual verification against signature
-      signature = new String(Base64.getEncoder().encode(instance.sign()), Charset.forName("UTF-8"));
+      signature = new String(Base64.getEncoder().encode(instance.sign()), Charset.forName(UTF_8));
 
       log.info("signe the signature with result: {}", signature);
     } catch (Exception e) {
@@ -91,7 +91,7 @@ public class CryptoUtil {
       // Initiate signature verification
       Signature instance = Signature.getInstance("SHA256withRSA");
       instance.initVerify(publicKey);
-      instance.update(message.getBytes("UTF-8"));
+      instance.update(message.getBytes(UTF_8));
 
       // actual verification against signature
       result = instance.verify(decodedSignature);
@@ -140,4 +140,6 @@ public class CryptoUtil {
     KeyFactory kf = KeyFactory.getInstance("RSA");
     return kf.generatePrivate(spec);
   }
+  
+  private static final String UTF_8 = "UTF-8";
 }
