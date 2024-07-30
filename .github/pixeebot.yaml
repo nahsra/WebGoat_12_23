@@ -2,7 +2,7 @@ ai:
   allow_llm_access: true
 
 codemods:
-  only:
+  prepend:
     - contrast:java/sql-injection
     - contrast:java/xxe
     - contrast:java/java-deserialization
