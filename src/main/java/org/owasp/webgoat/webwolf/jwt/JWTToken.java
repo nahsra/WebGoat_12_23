@@ -77,7 +77,7 @@ public class JWTToken {
 
     JsonWebSignature jws = new JsonWebSignature();
     jws.setPayload(payloadAsString);
-    headers.forEach((k, v) -> jws.setHeader(k, v));
+    headers.forEach((k, v) -> jws.setHeader(k, stripNewlines(v)));
     if (!headers.isEmpty()) { // otherwise e30 meaning {} will be shown as header
       builder.encoded(
           CompactSerializer.serialize(
@@ -134,5 +134,9 @@ public class JWTToken {
       }
     }
     return false;
+  }
+  
+  private static String stripNewlines(final String s) {
+      return s.replaceAll("[\n\r]", "");
   }
 }
