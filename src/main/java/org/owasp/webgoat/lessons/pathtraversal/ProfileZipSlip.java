@@ -70,7 +70,7 @@ public class ProfileZipSlip extends ProfileUploadBase {
       Enumeration<? extends ZipEntry> entries = zip.entries();
       while (entries.hasMoreElements()) {
         ZipEntry e = entries.nextElement();
-        File f = new File(tmpZipDirectory.toFile(), e.getName());
+        File f = new File(tmpZipDirectory.toFile(), sanitizeZipFilename(e.getName()));
         InputStream is = zip.getInputStream(e);
         Files.copy(is, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
       }
@@ -98,5 +98,15 @@ public class ProfileZipSlip extends ProfileUploadBase {
   @ResponseBody
   public ResponseEntity<?> getProfilePicture(@PathVariable("username") String username) {
     return ResponseEntity.notFound().build();
+  }
+  
+  String sanitizeZipFilename(String entryName) {
+      if (entryName == null || entryName.trim().isEmpty()) {
+          return entryName;
+      }
+      while (entryName.contains("../") || entryName.contains("..\\")) {
+          entryName = entryName.replace("../", "").replace("..\\", "");
+      }
+      return entryName;
   }
 }
